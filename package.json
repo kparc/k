@@ -23,9 +23,7 @@
     "url": "https://github.com/kparc/k/issues"
   },
   "homepage": "https://github.com/kparc/k#readme",
-  "dependencies": {
-    "uglify-js": "^3.6.0"
-  },
+  "dependencies": {},
   "files": [
     "get.sh",
     "get.min.js"
