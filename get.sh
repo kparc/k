@@ -1,42 +1,65 @@
-#!/bin/sh
+#!/bin/bash
+#===================================================================================
+#
+# FILE: get.sh
+#
+# USAGE: get.sh [version tag]
+#
+# DESCRIPTION: Download and unpack k binary from anaconda.org
+# Use 'main', 'dev' or the release date in 'yyyy.mm.dd' format.
+# The script downloads the latest 'dev' version by default.
+#
+# OPTIONS: see 'usage' and 'description'
+# REQUIREMENTS: ---
+# BUGS: ---
+# NOTES: ---
+# AUTHOR: Nikolai CHistiakov, kc@kparc.io
+# COMPANY: kparc
+# VERSION: 1.1.1
+# CREATED: 07.08.2019
+# REVISION: 23.08.2019
+#===================================================================================
 
-u=$(node url.js $1)
-b=$(basename $u)
+u=$(node get.min.js url $1)                     # download url
+test $? -ne 0 && echo "$u" && exit 1
+sp=$(test -f sum.txt && cat sum.txt)            # last accepted license checksum
+b=$(basename "$u")                              # archive file basename
+test $? -ne 0 || test -z "$b" && echo "'url" && exit 1
+set -e
+l=$(node get.min.js eula)                       # license text
+s=$(echo "$l" | cksum)                          # current license checksum
+cd "$(dirname "$0")"
 
-test $? -ne 0 || test -z "$b" && echo "\`url" && exit 1
-printf "downloading $(basename $u) from anaconda.org..."
-rm -rf "/tmp/$b" && mkdir "/tmp/$b"
-curl -LGs $u | tar --directory "/tmp/$b" -jxf - "info/LICENSE.txt" "bin/k" && printf "done.\n\n"
-COLUMNS=79
-if [ -z "$CI" ]  && [ -t 0 ]; then
-    eval $(resize)
-    fmt -w $(($COLUMNS - 4)) "/tmp/$b/info/LICENSE.txt"
-    read=read
+download () {                                   # download and unpack
+    printf "downloading $b from anaconda.org..."
+    curl -Ls $u | tar -jxf - "bin/k" && printf "done.\n\n"
+}
+
+if [ "$s" == "$sp" ] || [ -n "$CI" ];
+then
+    download
 else
-    read=true
-    input=y
-fi
-while true
-do
-    $read -r -p "\nDo you agree with the terms of the Evaluation Agreement? [Y/n] " input
-    case $input in
+    COLUMNS=79
+    eval $(resize)
+    echo "$l" | fmt -w $(($COLUMNS - 4))
+    while true
+    do
+        echo
+        read -r -p "Do you agree with the terms of the Evaluation Agreement? [Y/n] " input
+        case $input in
         [yY][eE][sS]|[yY])
-    chmod +x /tmp/$b/bin/k
-    mv "/tmp/$b/bin/k" .
-    #echo && ls -la ./k
-    #echo "done"
-    break
-    ;;
+            echo "$s" > sum.txt
+            download
+            break
+        ;;
         [nN][oO]|[nN])
-    echo "Aborting installation!"
-    rm -r "/tmp/$b"
-    exit 1
-    break
-    ;;
+            echo "Aborting installation!"
+            exit 1
+            break
+        ;;
         *)
-    echo "Please type \"yes\" or \"no\""
-    ;;
-    esac
-done
-
-rm -r "/tmp/$b"
+            echo 'Please type "yes" or "no"'
+        ;;
+        esac
+    done
+fi

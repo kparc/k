@@ -65,9 +65,11 @@ k.so
 k
 tmp
 info
+bin
+sum.txt
 
 # joe tmpfiles
 *~
 
-# tmp
-*.bak
+# minified scripts
+*.min.js
