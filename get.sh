@@ -13,7 +13,7 @@
 # REQUIREMENTS: ---
 # BUGS: ---
 # NOTES: ---
-# AUTHOR: regents of kparc, k@kparc.io
+# AUTHOR: regents of kparc <k@kparc.io>
 # COMPANY: kparc inc.
 # VERSION: 1.1.1
 # CREATED: 07.08.2019
