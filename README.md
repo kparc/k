@@ -1,4 +1,5 @@
 # 𝒌
+![npm](https://img.shields.io/npm/v/@kparc/k)
 k installer
 
 a lightweight npm script to install/update the latest development version of 𝒌 from the official anaconda.org channel.
