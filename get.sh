@@ -13,8 +13,8 @@
 # REQUIREMENTS: ---
 # BUGS: ---
 # NOTES: ---
-# AUTHOR: Nikolai CHistiakov, kc@kparc.io
-# COMPANY: kparc
+# AUTHOR: regents of kparc, k@kparc.io
+# COMPANY: kparc inc.
 # VERSION: 1.1.1
 # CREATED: 07.08.2019
 # REVISION: 23.08.2019
