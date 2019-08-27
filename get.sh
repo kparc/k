@@ -22,7 +22,7 @@
 
 u=$(node get.min.js url $1)                     # download url
 test $? -ne 0 && echo "$u" && exit 1
-sp=$(test -f sum.txt && cat sum.txt)            # last accepted license checksum
+sp=$(test -f eula.crc && cat eula.crc)            # last accepted license checksum
 b=$(basename "$u")                              # archive file basename
 test $? -ne 0 || test -z "$b" && echo "'url" && exit 1
 set -e
@@ -39,26 +39,27 @@ if [ "$s" == "$sp" ] || [ -n "$CI" ];
 then
     download
 else
-    COLUMNS=79
-    eval $(resize)
-    echo "$l" | fmt -w $(($COLUMNS - 4))
+    cols=$(stty size | cut -d ' ' -f 2)
+    echo "$l" | fmt -w $(($cols - 4))
     while true
     do
         echo
         read -r -p "Do you agree with the terms of the Evaluation Agreement? [Y/n] " input
         case $input in
         [yY][eE][sS]|[yY])
-            echo "$s" > sum.txt
+            echo "$s" > eula.crc
             download
             break
         ;;
         [nN][oO]|[nN])
-            echo "Aborting installation!"
+            printf "\n -------------------------- \n"
+            printf " |  installation aborted  | \n"
+            printf " -------------------------- \n\n"
             exit 1
             break
         ;;
         *)
-            echo 'Please type "yes" or "no"'
+            printf 'Please type "yes" or "no"'
         ;;
         esac
     done
