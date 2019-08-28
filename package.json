@@ -6,7 +6,6 @@
   "scripts": {
     "preinstall": "./get.sh",
     "prepack": "rm -f bin/k",
-    "prepublishOnly": "uglifyjs --toplevel -c -m --ecma 6 get.js > get.min.js",
     "test": "echo .z.a | k"
   },
   "bin": {
@@ -28,9 +27,7 @@
   "dependencies": {},
   "files": [
     "get.sh",
-    "get.min.js"
+    "get.js"
   ],
-  "devDependencies": {
-    "uglify-es": "^3.3.9"
-  }
+  "devDependencies": {}
 }
