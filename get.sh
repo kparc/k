@@ -32,7 +32,7 @@ then
     download
 else
     cols=$(stty size | cut -d ' ' -f 2)
-    printf "$l\n" | fmt -w $(($cols - 4))
+    printf "$l\n\n" | fmt -w $(($cols - 4))
     while true
     do
         read -r -p "Do you agree with the terms of the Evaluation Agreement? [y/n] " input
@@ -50,7 +50,7 @@ else
             break
         ;;
         *)
-            printf 'Please type "yes" or "no"'
+            printf 'Please type "yes" or "no"\n'
         ;;
         esac
     done
