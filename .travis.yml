@@ -6,4 +6,4 @@ before_install:
   - npm publish --dry-run
 script:
   - npm i -g
-  - echo .z.a | k
+  - npm test
