@@ -23,14 +23,17 @@ const p = (f, e, x) => {let data = '';
     x.on('data', x => data += x).on('end', ()=>
     {try{log(f(data))}catch(e){bail(`'${e}`);}});}
 
-if (argv[2] == 'url') {
-    get(api, {headers}, p.bind(null, parse_url, "'version"))
-    .on('error', bail.bind(null, "'internet"));
-} else if (argv[2] == 'eula') {
-    get(license, {}, p.bind(null, parse_eula, "'license"))
-    .on('error', bail.bind(null, "'internet"));
-} else {
-    bail(usage);
+switch (argv[2]) {
+    case 'url':
+        get(api, {headers}, p.bind(null, parse_url, "'version"))
+        .on('error', bail.bind(null, "'internet")); 
+    break;
+    case 'eula':
+        get(license, {}, p.bind(null, parse_eula, "'license"))
+        .on('error', bail.bind(null, "'internet"));
+    break;
+    default:
+        bail(usage);
 }
 
 //:~
