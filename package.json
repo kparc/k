@@ -5,8 +5,7 @@
   "main": "bin/k",
   "scripts": {
     "preinstall": "./get.sh",
-    "prepack": "rm -f bin/k",
-    "prepublishOnly": "uglifyjs --toplevel -c -m --ecma 6 get.js > get.min.js",
+    "prepack": "rm -f bin/k; uglifyjs --toplevel -c -m --ecma 6 get.js > get.min.js",
     "test": "echo .z.a | k"
   },
   "bin": {
