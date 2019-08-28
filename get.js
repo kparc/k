@@ -1,4 +1,4 @@
-const usage = 'usage: node get.js <url|eula> [main|dev|yyyy.mm.dd]',
+const usage = 'usage: node get.js <dist|eula> [main|dev|yyyy.mm.dd]',
     api = 'https://api.anaconda.org/package/shaktidb/shakti/files',
     license = 'https://shakti.com/license',
     headers = {Accept: 'application/json'};
@@ -22,18 +22,9 @@ const parse_eula = x => x
 const p = (f, e, x) => {let data = '';
     x.on('data', x => data += x).on('end', ()=>
     {try{log(f(data))}catch(e){bail(`'${e}`);}});}
+const targets = {dist:{u:api,h:headers,cb:parse_url},eula:{u:license,h:{},cb:parse_eula}};
+const tgt=argv[2],t=targets[tgt]||bail(usage);
 
-switch (argv[2]) {
-    case 'url':
-        get(api, {headers}, p.bind(null, parse_url, "'version"))
-        .on('error', bail.bind(null, "'internet")); 
-    break;
-    case 'eula':
-        get(license, {}, p.bind(null, parse_eula, "'license"))
-        .on('error', bail.bind(null, "'internet"));
-    break;
-    default:
-        bail(usage);
-}
+get(t.u,t.h,p.bind(null,t.cb, "'"+tgt)).on('error',bail.bind(null, "'net"));
 
 //:~
