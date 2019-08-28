@@ -7,7 +7,7 @@
 # The script downloads the latest 'dev' version by default.
 
 cd "$(dirname $0)"
-u=$(node get.js url $1)
+u=$(node get.js dist $1)
 test $? -ne 0 && printf "$u\n" && exit 1
 sp=$(test -f eula.crc && cat eula.crc)
 b=$(basename "$u")
