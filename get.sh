@@ -6,6 +6,7 @@
 # Use 'main', 'dev' or the release date in 'yyyy.mm.dd' format.
 # The script downloads the latest 'dev' version by default.
 
+cd "$(dirname "$0")"
 if [ -r "get.js" ];
 then
     gjs="get.js"
@@ -20,7 +21,6 @@ test $? -ne 0 || test -z "$b" && printf "'url\n" && exit 1
 l=$(node $gjs eula)
 test $? -ne 0 && printf "$l\n" && exit 1
 s=$(printf "$l" | cksum)
-cd "$(dirname "$0")"
 
 download () {
     printf "downloading $b from anaconda.org..."
