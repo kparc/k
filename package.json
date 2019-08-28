@@ -28,6 +28,7 @@
   "dependencies": {},
   "files": [
     "get.sh",
+    "get.js",
     "get.min.js"
   ],
   "devDependencies": {
