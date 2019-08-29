@@ -4,7 +4,7 @@ const usage = 'usage: node get.js [main|dev|yyyy.mm.dd]',
     headers = {Accept: 'application/json'};
 const {get} = require('https'), {platform} = require('os'),
     {log, error} = console, {argv, exit} = process;
-const bail = m => {error(m); exit(1)}
+const bail = m => error(m)||exit(1);
 const platform_is = p => x => x.attrs && x.attrs.platform === p;
 const is_date = /^\d{4}\.\d{2}\.\d{2}$/.test;
 const  version_is = v => ['dev', 'main'].includes(v) ?
@@ -20,14 +20,14 @@ const parse_eula = x => x
     .trim();
 const esc = s => s.replace(/([\\\$'"\n])/g, x=>x==='\n'?'\\n':'\\'+x);
 
-const g = (u,o={}) => new Promise((t,c) => 
+const getall = (u,o={}) => new Promise(t =>
     get(u,o,x => {let data = '';
     x.on('data', x => data += x).on('end', _=>t(data))})
     .on('error', _=>bail("'net")));
 
 Promise.all([
-    g(api, {headers}).then(parse_url).catch(_=>bail("'dist")),
-    g(license).then(parse_eula).catch(_=>bail("'eula"))])
-    .then(x=>log(`${x[0]}\n===\n${x[1]}`))
+    getall(api, {headers}).then(parse_url).catch(_=>bail("'dist")),
+    getall(license).then(parse_eula).catch(_=>bail("'eula"))])
+    .then(x=>log(`${x[0]}\n${x[1].replace(/\n/g, '\\n')}`))
 
 //:~
