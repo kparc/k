@@ -7,18 +7,16 @@
 # The script downloads the latest 'dev' version by default.
 
 cd "$(dirname $0)"
-u=$(node get.js dist $1)
-test $? -ne 0 && printf "$u\n" && exit 1
+eval $(node get.js $1)
+test $? -ne 0 || test -n "$e" && printf "$e\n" && exit 1
 sp=$(test -f eula.crc && cat eula.crc)
-b=$(basename "$u")
+b=$(basename "$dist")
 test $? -ne 0 || test -z "$b" && printf "'url\n" && exit 1
-l=$(node get.js eula)
-test $? -ne 0 && printf "$l\n" && exit 1
-s=$(printf "$l" | cksum)
+s=$(printf "$eula" | cksum)
 
 download () {
     printf "downloading $b from anaconda.org..."
-    curl -Ls $u | tar -jxf - "bin/k" && printf "done.\n\n"
+    curl -Ls $dist | tar -jxf - "bin/k" && printf "done.\n\n"
 }
 
 if [ "$s" == "$sp" ] || [ -n "$CI" ];
@@ -26,7 +24,7 @@ then
     download
 else
     cols=$(stty size | cut -d ' ' -f 2)
-    printf "$l\n\n" | fmt -w $(($cols - 4))
+    printf "$eula\n\n" | fold -w $(($cols - 4))
     while true
     do
         read -r -p "Do you agree with the terms of the Evaluation Agreement? [y/n] " input

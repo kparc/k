@@ -1,4 +1,4 @@
-const usage = 'usage: node get.js <dist|eula> [main|dev|yyyy.mm.dd]',
+const usage = 'usage: node get.js [main|dev|yyyy.mm.dd]',
     api = 'https://api.anaconda.org/package/shaktidb/shakti/files',
     license = 'https://shakti.com/license',
     headers = {Accept: 'application/json'};
@@ -13,7 +13,7 @@ const  version_is = v => ['dev', 'main'].includes(v) ?
 const later = (x, y) => x.upload_time > y.upload_time ? x : y;
 const parse_url = data => 'https:' + JSON.parse(data)
     .filter(platform_is(({darwin:'osx',linux:'linux'})[platform()]))
-    .filter(version_is(argv[3] || 'dev')).reduce(later).download_url;
+    .filter(version_is(argv[2] || 'dev')).reduce(later).download_url;
 const parse_eula = x => x
     .split('<body>', 2)[1]
     .replace(/<\/p.*?>/g, '\n')
@@ -21,10 +21,16 @@ const parse_eula = x => x
     .replace(/\t/g, ' ').trim();
 const p = (f, e, x) => {let data = '';
     x.on('data', x => data += x).on('end', ()=>
-    {try{log(f(data))}catch(e){bail(`'${e}`);}});}
-const targets = {dist:{u:api,h:headers,cb:parse_url},eula:{u:license,h:{},cb:parse_eula}};
-const tgt=argv[2],t=targets[tgt]||bail(usage);
+    {try{log(`${e}="${esc(f(data))}"`)}catch(ex){bail(`e="'${e}"`);}});}
+const esc = s => s
+    .replace(/\\/g, '\\\\')
+    .replace(/\$/g, '\\$')
+    .replace(/'/g, "\\'")
+    .replace(/"/g, '\\"')
+    .replace(/\n/g, '\\n')
+const bnet = bail.bind(null,`e="'net"`);
 
-get(t.u,t.h,p.bind(null,t.cb, "'"+tgt)).on('error',bail.bind(null, "'net"));
+get(api,{headers},p.bind(null,parse_url,'dist')).on('error',bnet);
+get(license,{},p.bind(null,parse_eula,'eula')).on('error',bnet);
 
 //:~
