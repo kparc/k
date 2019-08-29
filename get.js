@@ -22,12 +22,7 @@ const parse_eula = x => x
 const p = (f, e, x) => {let data = '';
     x.on('data', x => data += x).on('end', ()=>
     {try{log(`${e}="${esc(f(data))}"`)}catch(ex){bail(`e="'${e}"`);}});}
-const esc = s => s
-    .replace(/\\/g, '\\\\')
-    .replace(/\$/g, '\\$')
-    .replace(/'/g, "\\'")
-    .replace(/"/g, '\\"')
-    .replace(/\n/g, '\\n')
+const esc = s => s.replace(/([\\\$'"\n])/g, x=>x==='\n'?'\\n':'\\'+x)
 const bnet = bail.bind(null,`e="'net"`);
 
 get(api,{headers},p.bind(null,parse_url,'dist')).on('error',bnet);
