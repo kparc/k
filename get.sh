@@ -24,7 +24,7 @@ then
     download
 else
     cols=$(stty size | cut -d ' ' -f 2)
-    printf "$eula\n\n" | fold -w $(($cols - 4))
+    printf "$eula\n\n" | fold -s -w $(($cols - 4))
     while true
     do
         read -r -p "Do you agree with the terms of the Evaluation Agreement? [y/n] " input
