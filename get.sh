@@ -7,8 +7,13 @@
 # The script downloads the latest 'dev' version by default.
 
 cd "$(dirname $0)"
-eval $(node get.js $1)
-test $? -ne 0 || test -n "$e" && printf "$e\n" && exit 1
+node get.js $1
+IFS=$'\n===\n' read -d '' -ra x <<< "$(node get.js $1)"
+echo "$?"
+#test $? -ne 0 && exit 1
+dist=${x[0]}
+eula=${x[1]}
+printf "$dist $eula"
 sp=$(test -f eula.crc && cat eula.crc)
 b=$(basename "$dist")
 test $? -ne 0 || test -z "$b" && printf "'url\n" && exit 1
