@@ -19,13 +19,13 @@ const parse_eula = x => x
     .replace(/<\/p.*?>/g, '\n')
     .replace(/<.*?>/g, '')
     .replace(/\t/g, ' ').trim();
-const p = (f, e, x) => {let data = '';
+const p = (f, e) => x => {let data = '';
     x.on('data', x => data += x).on('end', ()=>
     {try{log(`${e}="${esc(f(data))}"`)}catch(ex){bail(`e="'${e}"`);}});}
 const esc = s => s.replace(/([\\\$'"\n])/g, x=>x==='\n'?'\\n':'\\'+x)
-const bnet = bail.bind(null,`e="'net"`);
+const bnet = _ => bind(`e="'net"`);
 
-get(api,{headers},p.bind(null,parse_url,'dist')).on('error',bnet);
-get(license,{},p.bind(null,parse_eula,'eula')).on('error',bnet);
+get(api, {headers}, p(parse_url, 'dist')).on('error', bnet);
+get(license, {}, p(parse_eula, 'eula')).on('error', bnet);
 
 //:~
