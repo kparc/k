@@ -18,12 +18,9 @@ const parse_eula = x => x
     .split('<body>', 2)[1]
     .replace(/<[/]?(\w+).*?>|[\t\n]+/g, (x,y)=>y==='p'?'\n':y?'':' ')
     .trim();
-const esc = s => s.replace(/([\\\$'"\n])/g, x=>x==='\n'?'\\n':'\\'+x);
-
-const getall = (u,o={}) => new Promise(t =>
-    get(u,o,x => {let data = '';
+const getall = (u,o={}) => new Promise(t => get(u,o,x => {let data = '';
     x.on('data', x => data += x).on('end', _=>t(data))})
-    .on('error', _=>bail("'net")));
+     .on('error', _=>bail("'net")));
 
 Promise.all([
     getall(api, {headers}).then(parse_url).catch(_=>bail("'dist")),
