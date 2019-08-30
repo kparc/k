@@ -1,5 +1,5 @@
 # 𝒌
-![npm](https://img.shields.io/npm/v/@kparc/k)
+[![npm](https://img.shields.io/npm/v/@kparc/k)](https://www.npmjs.com/package/@kparc/k)
 
 k installer
 
