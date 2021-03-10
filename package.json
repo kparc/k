@@ -1,6 +1,6 @@
 {
   "name": "@kparc/k",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "k installer",
   "main": "bin/k",
   "scripts": {
