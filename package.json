@@ -7,7 +7,7 @@
     "preuninstall": "./bak.sh",
     "preinstall": "./get.sh",
     "prepack": "rm -f bin/k",
-    "postversion": "git push && git push --tags",
+    "postversion": "git push --quiet && git push --tags --quiet",
     "test": "echo 2+2|k"
   },
   "bin": {
