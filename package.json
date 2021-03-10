@@ -7,6 +7,7 @@
     "preuninstall": "./bak.sh",
     "preinstall": "./get.sh",
     "prepack": "rm -f bin/k && npm version patch",
+    "postversion": "git push && git push --tags",
     "test": "echo 2+2|k"
   },
   "bin": {
