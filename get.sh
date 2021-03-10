@@ -11,18 +11,18 @@ dist=${x[0]}
 eula=${x[1]}
 test -z $dist || test -z $eula && exit 1
 saved_crc=$(test -f eula.crc && cat eula.crc)
+test -z $saved_crc && saved_crc=$(test -f /tmp/eula.crc && cat /tmp/eula.crc)
 crc=$(printf "$eula" | cksum)
 k=bin/k
 
-echo "prev $saved_crc"
-echo "curr $crc"
+# echo "prev $saved_crc"
+# echo "curr $crc"
 
 download() {
     #printf "downloading $(basename "$dist")..."
     #curl -Ls $dist | tar -jxf - "bin/k" && printf "done.\n\n"
     #printf "downloading $dist..."
-    mkdir -p bin
-    curl -Ls $dist > $k && chmod +x $k && ls -l $k
+    mkdir -p bin && curl -Ls $dist > $k && chmod +x $k && ls -l $k || exit 1
 }
 
 if [ "$crc" == "$saved_crc" ] || [ -n "$CI" ];

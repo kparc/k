@@ -1,11 +1,11 @@
 {
   "name": "@kparc/k",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "k installer",
   "main": "bin/k",
   "scripts": {
+    "preuninstall": "./bak.sh",
     "preinstall": "./get.sh",
-    "update": "./get.sh",
     "prepack": "rm -f bin/k",
     "test": "echo 2+2|k"
   },
@@ -27,6 +27,7 @@
   "homepage": "https://github.com/kparc/k#readme",
   "files": [
     "get.sh",
+    "bak.sh",
     "get.js"
   ],
   "devDependencies": {}
