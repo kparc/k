@@ -1,7 +1,7 @@
 # k installer
 [![npm](https://img.shields.io/npm/v/@kparc/k)](https://www.npmjs.com/package/@kparc/k)
 
-a lightweight npm package to install/update the runtime of k language on supported platforms:
+a lightweight npm package to install/update the runtime of [k language](https://shakti.com) on supported architectures and platforms:
 
 * macos/x86_64
 * linux/x86_64
@@ -16,20 +16,25 @@ $ echo 2+2|k
 
 ### faq
 
-**q:** how to update?
+**q:** how to upgrade?
 
-the update command is identical to install. for convenience, consider adding the following to your rc file:
+the update is identical to install. for convenience, consider adding the following to your rc file:
 ```
 alias kup="npm i @kparc/k -g"
 ```
 
 **q:** how to downgrade?
 
-rolling back to previous versions is not yet supported.
+rolling back to previous versions is not yet supported. to uninstall, use:
 
-**q:** what do i do if npm bails with EACCESS?
+```
+$ npm uninstall @kparc/k -g
+removed 1 package in 0.333s
+```
 
-**a:** in some cases, global npm installation directory (e.g. `/usr/lib/node_modules`) is owned by the superuser by default.
+**q:** what do i do if npm bails with `EACCESS`?
+
+**a:** on some systems, global npm installation directory (e.g. `/usr/lib/node_modules`) is owned by the superuser by default.
 use `sudo npm` and add `--unsafe` flag to give the installer the necessary one-time permissions. relaxing ownership of the npm directory is not recommended.
 
 **q:** why do i have to accept a license on first install?
