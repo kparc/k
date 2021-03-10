@@ -1,3 +1,3 @@
 all:
-	@npm version patch
+	@npm version patch --silent
 	@npm publish
