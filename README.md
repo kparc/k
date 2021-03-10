@@ -32,6 +32,10 @@ $ npm uninstall @kparc/k -g
 removed 1 package in 0.333s
 ```
 
+**q:** it doesn't work for me.
+
+**a:** please raise an [issue](https://github.com/kparc/k/issues/new) and include parts of `npm i @kparc/k -g --verbose` that seem relevant.
+
 **q:** what do i do if npm bails with `EACCESS`?
 
 **a:** on some systems, global npm installation directory (e.g. `/usr/lib/node_modules`) is owned by the superuser by default.
