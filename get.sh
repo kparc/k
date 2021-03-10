@@ -14,6 +14,9 @@ saved_crc=$(test -f eula.crc && cat eula.crc)
 crc=$(printf "$eula" | cksum)
 k=bin/k
 
+echo "prev $saved_crc"
+echo "curr $crc"
+
 download() {
     #printf "downloading $(basename "$dist")..."
     #curl -Ls $dist | tar -jxf - "bin/k" && printf "done.\n\n"
