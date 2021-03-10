@@ -1,24 +1,37 @@
-# 𝒌
+# k installer
 [![npm](https://img.shields.io/npm/v/@kparc/k)](https://www.npmjs.com/package/@kparc/k)
 
-k installer
+a lightweight npm package to install/update the runtime of k language on supported platforms:
 
-a lightweight npm script to install/update the latest development version of 𝒌 from the official anaconda.org channel
+* macos/x86_64
+* linux/x86_64
+* (tba)
 
 ### usage
 
 ```
-$ npm i -g @kparc/k
-$ k
+$ npm i @kparc/k -g
+$ echo 2+2|k
 ```
 
 ### faq
 
-**Q:** what do i do if npm bails with EACCESS?
+**q:** how to update?
 
-**A:** in some cases, global npm installation directory (e.g. `/usr/lib/node_modules`) is owned by the superuser by default.
-use `sudo npm` and add `--unsafe` flag to give the installer the necessary permissions. changing ownership of the directory is not a good idea.
+the update command is identical to install. for convenience, consider adding the following to your rc file:
+```
+alias kup="npm i @kparc/k -g"
+```
 
-**Q:** why do i have to accept a proprietary license?
+**q:** how to downgrade?
 
-**A:** while k installer is distributed under MIT license, 𝒌 itself is subject to [Shakti Software Evaluation Agreement](https://shakti.com/license.php)
+rolling back to previous versions is not yet supported.
+
+**q:** what do i do if npm bails with EACCESS?
+
+**a:** in some cases, global npm installation directory (e.g. `/usr/lib/node_modules`) is owned by the superuser by default.
+use `sudo npm` and add `--unsafe` flag to give the installer the necessary one-time permissions. relaxing ownership of the npm directory is not recommended.
+
+**q:** why do i have to accept a license on first install?
+
+**a:** while k installer is distributed under MIT license, k itself is subject to [Shakti Software Evaluation Agreement](https://shakti.com/license.php). the agreement is not re-displayed unless there are changes to it compared to the previously accepted version.
