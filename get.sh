@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
-# USAGE: get.sh [version tag]
-#
-# DESCRIPTION: Download and unpack k binary from anaconda.org
-# Use 'main', 'dev' or the release date in 'yyyy.mm.dd' format.
-# The script downloads the latest 'dev' version by default.
+# get.sh [version]
+# download and unpack k runtime system.
+# optional version tag is 'yyyy.mm.dd'.
+# default is the latest available version.
 
 IFS=$'\n'
 read -d '' -ra x <<< "$(node get.js $1)"
@@ -13,10 +12,14 @@ eula=${x[1]}
 test -z $dist || test -z $eula && exit 1
 saved_crc=$(test -f eula.crc && cat eula.crc)
 crc=$(printf "$eula" | cksum)
+k=bin/k
 
 download() {
-    printf "downloading $(basename "$dist") from anaconda.org..."
-    curl -Ls $dist | tar -jxf - "bin/k" && printf "done.\n\n"
+    #printf "downloading $(basename "$dist")..."
+    #curl -Ls $dist | tar -jxf - "bin/k" && printf "done.\n\n"
+    #printf "downloading $dist..."
+    mkdir -p bin
+    curl -Ls $dist > $k && chmod +x $k && ls -l $k
 }
 
 if [ "$crc" == "$saved_crc" ] || [ -n "$CI" ];
@@ -24,7 +27,7 @@ then
     download
 else
     cols=$(stty size | cut -d ' ' -f 2)
-    printf "$eula\n\n" | fold -s -w $(($cols - 4))
+    printf "\n$eula\n\n" | fold -s -w $(($cols - 10))
     while true
     do
         read -r -p "Do you agree with the terms of the Evaluation Agreement? [y/n] "
@@ -47,3 +50,5 @@ else
         esac
     done
 fi
+
+#:~
