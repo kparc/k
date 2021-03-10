@@ -18,9 +18,9 @@ $ echo 2+2|k
 
 **q:** how to upgrade?
 
-the update is identical to install. for convenience, consider adding the following to your rc file:
+the update command is the same as install. for convenience, consider adding the following to your rc file:
 ```
-alias kup="npm i @kparc/k -g"
+alias kup="npm i @kparc/k -g --silent"
 ```
 
 **q:** how to downgrade?

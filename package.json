@@ -6,7 +6,7 @@
   "scripts": {
     "preuninstall": "./bak.sh",
     "preinstall": "./get.sh",
-    "prepack": "rm -f bin/k",
+    "prepack": "rm -f bin/k && npm version patch",
     "test": "echo 2+2|k"
   },
   "bin": {
