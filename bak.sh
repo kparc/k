@@ -1,9 +1,9 @@
 #!/bin/sh
 
-# retain EULA checksum in /tmp to survive hard reinstall
+# retain eula checksum in /tmp to survive hard reinstall
 
-test ! -e eula.crc && exit 0
+test ! -e shakti.eula.crc && exit 0
 
-cp eula.crc /tmp
+cp shakti.eula.crc /tmp
 
 #:~

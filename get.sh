@@ -10,8 +10,8 @@ read -d '' -ra x <<< "$(node get.js $1)"
 dist=${x[0]}
 eula=${x[1]}
 test -z $dist || test -z $eula && exit 1
-saved_crc=$(test -f eula.crc && cat eula.crc)
-test -z $saved_crc && saved_crc=$(test -f /tmp/eula.crc && cat /tmp/eula.crc)
+saved_crc=$(test -f shakti.eula.crc && cat shakti.eula.crc)
+test -z $saved_crc && saved_crc=$(test -f /tmp/shakti.eula.crc && cat /tmp/shakti.eula.crc)
 crc=$(printf "$eula" | cksum)
 k=bin/k
 
@@ -32,7 +32,7 @@ else
         read -r -p "Do you agree with the terms of the Evaluation Agreement? [y/n] "
         case $REPLY in
         [yY][eE][sS]|[yY])
-            printf "$crc" > eula.crc
+            printf "$crc" > shakti.eula.crc
             download
             break
         ;;
