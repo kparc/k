@@ -18,6 +18,7 @@ k=bin/k
 download() {
     #printf "downloading $(basename "$dist")..."
     #curl -Ls $dist | tar -jxf - "bin/k" && printf "done.\n\n"
+    printf "downloading k runtime from shakti.sh..."
     mkdir -p bin && curl -Ls $dist > $k && chmod +x $k && ls -l $k || exit 1
 }
 
