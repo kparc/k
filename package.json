@@ -5,7 +5,7 @@
   "main": "bin/k",
   "scripts": {
     "preuninstall": "./bak.sh",
-    "install": "./get.sh",
+    "preinstall": "./get.sh",
     "postversion": "git push --quiet && git push --tags --quiet",
     "test": "echo 2+2|k"
   },
