@@ -18,7 +18,7 @@ k=bin/k
 download() {
     #printf "downloading $(basename "$dist")..."
     #curl -Ls $dist | tar -jxf - "bin/k" && printf "done.\n\n"
-    printf "downloading k runtime from shakti.sh..."
+    printf "downloading k runtime from shakti.sh...\n"
     mkdir -p bin && curl -Ls $dist > $k && chmod +x $k && ls -l $k || exit 1
 }
 
@@ -26,6 +26,7 @@ if [ "$crc" == "$saved_crc" ] || [ -n "$CI" ];
 then
     download
 else
+    printf "no local crc found.\n"
     cols=$(stty size | cut -d ' ' -f 2)
     printf "\n$eula\n\n" | fold -s -w $(($cols - 10))
     while true
