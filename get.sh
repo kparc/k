@@ -15,8 +15,6 @@ test -z $saved_crc && saved_crc=$(test -f /tmp/shakti.eula.crc && cat /tmp/shakt
 crc=$(printf "$eula" | cksum)
 k=bin/k
 
-exit 0
-
 download() {
     #printf "downloading $(basename "$dist")..."
     #curl -Ls $dist | tar -jxf - "bin/k" && printf "done.\n\n"
