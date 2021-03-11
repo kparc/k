@@ -34,12 +34,16 @@ removed 1 package in 0.333s
 
 **q:** it doesn't work for me.
 
-**a:** please raise an [issue](https://github.com/kparc/k/issues/new) and include parts of `npm i @kparc/k -g --verbose` that seem relevant.
+**a:** the installer targets Node.js LTS, which is recommended for use and ships with `npm 6.*`. if your environment is configured to use latest features, you may experience difficulties. please raise an [issue](https://github.com/kparc/k/issues/new) and include parts of `npm i @kparc/k -g --verbose` that seem relevant.
 
-**q:** what do i do if npm bails with `EACCESS`?
+**q:** the installer bails with `EACCESS`.
 
 **a:** on some systems, global npm installation directory (e.g. `/usr/lib/node_modules`) is owned by the superuser by default.
 use `sudo npm` and add `--unsafe` flag to give the installer the necessary one-time permissions. relaxing ownership of the npm directory is not recommended.
+
+**q:** i don't have administrative rights on my system.
+
+**a:** omit `-g` flag, the package will be placed in your home directory. you can then add `~/node_modules/@kparc/k/bin` to your `PATH`.
 
 **q:** why do i have to accept a license on first install?
 
