@@ -20,7 +20,7 @@ $ echo 2+2|k
 
 the update command is the same as install. for convenience, consider adding the following to your rc file:
 ```
-alias kup="npm i @kparc/k -g --silent"
+alias kup="npm i @kparc/k --global --quiet --no-audit --yes"
 ```
 
 #### how to downgrade?
