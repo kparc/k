@@ -1,3 +1,5 @@
+"use strict"
+
 const {get} = require('https');
 const {log, error} = console, {argv, exit, platform:os} = process;
 

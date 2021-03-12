@@ -40,6 +40,7 @@ else
         case $REPLY in
         [yY][eE][sS]|[yY])
             printf "$crc" > $eula_path
+            printf "\n\n"
             download
             break
         ;;

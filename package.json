@@ -4,7 +4,8 @@
   "description": "k installer",
   "main": "bin/k",
   "scripts": {
-    "preinstall": "./get.sh",
+    "build": "./get.sh",
+    "preinstall": "npm run build --silent",
     "postversion": "git push --quiet && git push --tags --quiet",
     "test": "echo 2+2|k"
   },
