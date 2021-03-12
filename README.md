@@ -3,15 +3,19 @@
 
 a lightweight npm package to install/update the runtime of [k language](https://shakti.com) on supported architectures and platforms:
 
+```
 * macos/x86_64
 * linux/x86_64
+```
 
-TBA:
+tba:
 
+```
 * macos/aarch64
 * linux/aarch64
-* windows/wasm32
+* windows/wsm32
 * linux/rv64gcv
+```
 
 ### usage
 
