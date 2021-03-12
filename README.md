@@ -18,10 +18,11 @@ $ echo 2+2|k
 
 #### how to upgrade?
 
-the update command is the same as install. for convenience, consider adding the following to your rc file:
+the upgrade is the same as install. for convenience, consider adding the following to your rc file:
 ```
 alias kup="npm i @kparc/k --global --quiet --no-audit --yes"
 ```
+additional flags suppress non-essential output, skip audit checks (k has no dependencies), and automatically accepts prompts (see below).
 
 #### how to downgrade?
 
@@ -60,4 +61,3 @@ by default, the checksum of previously accepted EULA text is placed at the follo
 $ cat /tmp/shakti.eula.crc
 1226073694 11784
 ```
-
