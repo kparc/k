@@ -34,7 +34,7 @@ removed 1 package in 0.333s
 
 #### it doesn't work for me.
 
-the installer targets Node.js LTS, which is recommended for most users and ships with `npm 6.*`. if your environment is configured to use latest features, you may experience minor difficulties, e.g. excessively verbose `npm` output during installation . please raise an [issue](https://github.com/kparc/k/issues/new) and include parts of `npm i @kparc/k -g --verbose` that seem relevant.
+the installer targets Node.js LTS, which is recommended for most users and ships with `npm 6.*`. if your environment is configured to use latest features, you may experience minor difficulties, e.g. excessively verbose `npm` output during installation. please raise an [issue](https://github.com/kparc/k/issues/new) and include parts of `npm i @kparc/k -g --verbose` that seem relevant.
 
 #### the installer fails with `EACCESS`.
 
