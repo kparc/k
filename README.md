@@ -39,10 +39,6 @@ $ npm uninstall @kparc/k -g
 removed 1 package in 0.333s
 ```
 
-#### it doesn't work for me.
-
-the installer targets Node.js LTS, which is recommended for most users and ships with `npm 6.*`. if your environment is configured to use latest features, you may experience minor difficulties, e.g. excessively verbose `npm` output during installation. please raise an [issue](https://github.com/kparc/k/issues/new) and include parts of `npm i @kparc/k -g --verbose` that seem relevant.
-
 #### the installer fails with `EACCESS`.
 
 on correctly configured systems, the global `npm` installation directory (e.g. `/usr/lib/node_modules`) is owned by the superuser. use the following command to give `npm` the necessary one-time permissions:
@@ -67,3 +63,7 @@ by default, the checksum of previously accepted EULA text is placed at the follo
 $ cat /tmp/shakti.eula.crc
 1226073694 11784
 ```
+
+#### i'm having issues.
+
+the installer targets Node.js LTS, which is recommended for most users and ships with `npm 6.*`. if your environment is configured to use latest features, you may experience minor difficulties, e.g. excessively verbose `npm` output during installation. please raise an [issue](https://github.com/kparc/k/issues/new) and include parts of `npm i @kparc/k -g --verbose` that seem relevant.
