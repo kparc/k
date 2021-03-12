@@ -73,3 +73,5 @@ bin
 
 # minified scripts
 *.min.js
+
+pack.sh
