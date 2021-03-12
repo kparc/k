@@ -38,8 +38,13 @@ the installer targets Node.js LTS, which is recommended for most users and ships
 
 #### the installer fails with `EACCESS`.
 
-on some systems, global npm installation directory (e.g. `/usr/lib/node_modules`) is owned by the superuser by default.
-use `sudo npm` and add `--unsafe` flag to give the installer the necessary one-time permissions. relaxing ownership of the npm directory is not recommended.
+on correctly configured systems, the global `npm` installation directory (e.g. `/usr/lib/node_modules`) is owned by the superuser. use the following command to give `npm` the necessary one-time permissions:
+
+```
+$ sudo npm install @kparc/k --global --unsafe
+```
+
+relaxing ownership of the npm directory is not recommended.
 
 #### i don't have administrative rights on my system.
 
@@ -47,4 +52,12 @@ omit `-g` flag, the package will be placed in your home directory. you can then 
 
 #### why do i have to accept a license on first install?
 
-while k installer is distributed under MIT license, k itself is subject to [Shakti Software Evaluation Agreement](https://shakti.com/license.php). the agreement is not re-displayed unless there are changes to it compared to the previously accepted version.
+while k installer is distributed under MIT license, k itself is subject to [Shakti Software Evaluation Agreement](https://shakti.com/license.php). the agreement is not re-displayed unless there are changes to the previously accepted version.
+
+by default, the checksum of previously accepted EULA text is placed at the following *global* location:
+
+```
+$ cat /tmp/shakti.eula.crc
+1226073694 11784
+```
+
