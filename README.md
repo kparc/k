@@ -34,9 +34,9 @@ removed 1 package in 0.333s
 
 #### it doesn't work for me.
 
-the installer targets Node.js LTS, which is recommended for use and ships with `npm 6.*`. if your environment is configured to use latest features, you may experience difficulties, e.g. excessively verbose `npm` output during installation . please raise an [issue](https://github.com/kparc/k/issues/new) and include parts of `npm i @kparc/k -g --verbose` that seem relevant.
+the installer targets Node.js LTS, which is recommended for most users and ships with `npm 6.*`. if your environment is configured to use latest features, you may experience minor difficulties, e.g. excessively verbose `npm` output during installation . please raise an [issue](https://github.com/kparc/k/issues/new) and include parts of `npm i @kparc/k -g --verbose` that seem relevant.
 
-#### the installer bails with `EACCESS`.
+#### the installer fails with `EACCESS`.
 
 on some systems, global npm installation directory (e.g. `/usr/lib/node_modules`) is owned by the superuser by default.
 use `sudo npm` and add `--unsafe` flag to give the installer the necessary one-time permissions. relaxing ownership of the npm directory is not recommended.
