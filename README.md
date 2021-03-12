@@ -5,7 +5,10 @@ a lightweight npm package to install/update the runtime of [k language](https://
 
 * macos/x86_64
 * linux/x86_64
-* (tba)
+* macos/aarch64 (tba)
+* linux/aarch64 (tba)
+* windows/wasm32 (tba)
+* linux/rv64gcv (tba)
 
 ### usage
 
