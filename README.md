@@ -16,14 +16,14 @@ $ echo 2+2|k
 
 ### faq
 
-**q:** how to upgrade?
+#### how to upgrade?
 
 the update command is the same as install. for convenience, consider adding the following to your rc file:
 ```
 alias kup="npm i @kparc/k -g --silent"
 ```
 
-**q:** how to downgrade?
+#### how to downgrade?
 
 rolling back to previous versions is not yet supported. to uninstall, use:
 
@@ -32,19 +32,19 @@ $ npm uninstall @kparc/k -g
 removed 1 package in 0.333s
 ```
 
-**q:** it doesn't work for me.
+#### it doesn't work for me.
 
-**a:** the installer targets Node.js LTS, which is recommended for use and ships with `npm 6.*`. if your environment is configured to use latest features, you may experience difficulties. please raise an [issue](https://github.com/kparc/k/issues/new) and include parts of `npm i @kparc/k -g --verbose` that seem relevant.
+the installer targets Node.js LTS, which is recommended for use and ships with `npm 6.*`. if your environment is configured to use latest features, you may experience difficulties, e.g. excessively verbose `npm` output during installation . please raise an [issue](https://github.com/kparc/k/issues/new) and include parts of `npm i @kparc/k -g --verbose` that seem relevant.
 
-**q:** the installer bails with `EACCESS`.
+#### the installer bails with `EACCESS`.
 
-**a:** on some systems, global npm installation directory (e.g. `/usr/lib/node_modules`) is owned by the superuser by default.
+on some systems, global npm installation directory (e.g. `/usr/lib/node_modules`) is owned by the superuser by default.
 use `sudo npm` and add `--unsafe` flag to give the installer the necessary one-time permissions. relaxing ownership of the npm directory is not recommended.
 
-**q:** i don't have administrative rights on my system.
+#### i don't have administrative rights on my system.
 
-**a:** omit `-g` flag, the package will be placed in your home directory. you can then add `~/node_modules/@kparc/k/bin` to your `PATH`.
+omit `-g` flag, the package will be placed in your home directory. you can then add `~/node_modules/@kparc/k/bin` to your `PATH`.
 
-**q:** why do i have to accept a license on first install?
+#### why do i have to accept a license on first install?
 
-**a:** while k installer is distributed under MIT license, k itself is subject to [Shakti Software Evaluation Agreement](https://shakti.com/license.php). the agreement is not re-displayed unless there are changes to it compared to the previously accepted version.
+while k installer is distributed under MIT license, k itself is subject to [Shakti Software Evaluation Agreement](https://shakti.com/license.php). the agreement is not re-displayed unless there are changes to it compared to the previously accepted version.
