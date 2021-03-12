@@ -4,7 +4,6 @@
   "description": "k installer",
   "main": "bin/k",
   "scripts": {
-    "preuninstall": "./bak.sh",
     "preinstall": "./get.sh",
     "postversion": "git push --quiet && git push --tags --quiet",
     "test": "echo 2+2|k"
@@ -12,12 +11,18 @@
   "bin": {
     "k": "bin/k"
   },
+  "os": [
+    "darwin", "linux"
+  ],
+  "cpu": [
+    "x64", "arm"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kparc/k.git"
   },
   "keywords": [
-    "k"
+    "k", "k9", "ksql", "shaktidb", "kparc", "atw"
   ],
   "author": "kparc",
   "license": "MIT",
@@ -27,7 +32,6 @@
   "homepage": "https://github.com/kparc/k#readme",
   "files": [
     "get.sh",
-    "bak.sh",
     "get.js"
   ],
   "devDependencies": {}
