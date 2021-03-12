@@ -1,6 +1,6 @@
 {
   "name": "@kparc/k",
-  "version": "2.0.26",
+  "version": "2.0.27",
   "description": "k installer",
   "main": "bin/k",
   "scripts": {
@@ -12,17 +12,24 @@
     "k": "bin/k"
   },
   "os": [
-    "darwin", "linux"
+    "darwin",
+    "linux"
   ],
   "cpu": [
-    "x64", "arm"
+    "x64",
+    "arm"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kparc/k.git"
   },
   "keywords": [
-    "k", "k9", "ksql", "shaktidb", "kparc", "atw"
+    "k",
+    "k9",
+    "ksql",
+    "shaktidb",
+    "kparc",
+    "atw"
   ],
   "author": "kparc",
   "license": "MIT",
