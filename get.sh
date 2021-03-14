@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-# get.sh [version|dev]
-# download and unpack k runtime system.
+# get.sh [version]
+# download and unpack k runtime and dev environment.
 # optional version tag is 'yyyy.mm.dd' (nyi).
 # default is the latest available version.
-# 'dev' fetches new files into ~/shakti.
+# fetches content from shakti.sh into ~/shakti if it exists.
 
 # re-tty (npm 7.*)
-t=/dev/tty
-exec>$t<$t
+t=/dev/tty; exec>$t<$t
+
 devpath=~/shakti
 
 fetch(){
