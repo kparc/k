@@ -26,7 +26,7 @@ $ echo 2+2|k
 
 ### devmode
 
-in case the installer finds a directory named `shakti` in your `$HOME`, it will check out the documentation and examples from `shakti.sh` into that directory.
+in case the installer finds a directory named `shakti` in your `$HOME`, it will check out documentation and examples from `shakti.sh` into that directory.
 
 ### faq
 
