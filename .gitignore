@@ -75,3 +75,4 @@ bin
 *.min.js
 
 pack.sh
+shakti.lst
