@@ -20,7 +20,7 @@ fetch(){
     cd $CD
 }
 
-if [ "$1" == "dev" ]; then
+if [ "$KDEV" == "1" ]; then
     mkdir -p $devpath
     paths=`node get.js dev $devpath`; test $? -eq 0 || exit 1
     echo $paths | xargs -d ' ' -L1 | while read p ; do fetch $p ; done
