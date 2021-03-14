@@ -38,12 +38,13 @@ const parse_meta = data => JSON.parse(data)
     .filter(f=>f[0].length)                                             //! no empty lines
     .filter(f=>ltime(f[0])!==rtime(f[1]))                               //! skip non-modified
     .map(f=>[f[0],f[1].replace(/[-T]/g,'').replace(/:/,'').replace(/:/,'.')]) //!format for touch(1)
-    .join(' ').trim();
+    .join('\n').trim();
 
 const check_dir = p => {try{const s=fs.statSync(p);return s.isDirectory();}catch(e){return false}};
 
 //! list shakti.sh except binaries
-if(argv[2]==='dev'){if(!argv[3]||!check_dir(argv[3]))bail('!dev')
+if(argv[2]==='dev'){
+    if(!argv[3]||!check_dir(argv[3]))bail('!dev')
     SHAKTI_DIR = argv[3];
     Promise.all([
      getall(api,{headers}).then(parse_meta).catch(_=>bail("!meta"))])
