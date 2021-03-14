@@ -24,7 +24,7 @@ const parse_eula = x => x.split('<body>', 2)[1]
     .replace(/<[/]?(\w+).*?>|[\t\n]+/g, (x,y)=>y==='p'?'\n':y?'':'').trim();
 
 const geturl = () => {const p = OS[os];
-    return p?`https://shakti.sh/${p}/k`:bail('!'+os)};
+    return p?`https://shakti.sh/${p}/k?eula=shakti.com/license`:bail('!'+os)};
 
 const to_iso = (s) => new Date(s).toISOString().slice(0,-5)
 
