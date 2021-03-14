@@ -1,14 +1,31 @@
 #!/usr/bin/env bash
 
-# get.sh [version]
+# get.sh [version|dev]
 # download and unpack k runtime system.
-# optional version tag is 'yyyy.mm.dd'.
+# optional version tag is 'yyyy.mm.dd' (nyi).
 # default is the latest available version.
-
+# 'dev' fetches new files into ~/shakti.
 
 # re-tty (npm 7.*)
 t=/dev/tty
 exec>$t<$t
+devpath=~/shakti
+
+fetch(){
+    ft=$1; test -z $ft && return
+    f=`echo $ft|cut -d',' -f1`;t=`echo $ft|cut -d',' -f2`
+    CD=`pwd`
+    cd $devpath
+    curl -Ls --create-dirs -o $f https://shakti.sh/$f && touch -t $t $f && printf "[~] $devpath/$f\n"
+    cd $CD
+}
+
+if [ "$1" == "dev" ]; then
+    mkdir -p $devpath
+    paths=`node get.js dev $devpath`; test $? -eq 0 || exit 1
+    echo $paths | xargs -d ' ' -L1 | while read p ; do fetch $p ; done
+    exit 0
+fi
 
 IFS=$'\n'
 read -d '' -ra x <<< "$(node get.js $1)"
