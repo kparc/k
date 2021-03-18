@@ -9,7 +9,9 @@
 # re-tty (npm 7.*)
 t=/dev/tty; exec>$t<$t
 
+k=bin/k
 devpath=~/shakti
+eula_path=../.shakti.eula.crc
 
 fetch(){
     ft=$1; test -z $ft && return
@@ -26,13 +28,10 @@ fi
 
 IFS=$'\n'
 read -d '' -ra x <<< "$(node get.js $1)"
-dist=${x[0]}
-eula=${x[1]}
-eula_path=/tmp/shakti.eula.crc
+dist=${x[0]}; eula=${x[1]}
 test -z $dist || test -z $eula && exit 1
 saved_crc=$(test -f $eula_path && cat $eula_path)
 crc=$(printf "$eula" | cksum)
-k=bin/k
 
 download() {
     #printf "downloading $(basename "$dist")..."
