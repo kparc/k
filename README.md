@@ -65,12 +65,7 @@ omit `-g` flag, the package will be placed in your home directory. you can then 
 
 while k installer is distributed under MIT license, k itself is subject to [Shakti Software Evaluation Agreement](https://shakti.com/license.php). the agreement is not re-displayed unless there are changes to the previously accepted version.
 
-by default, the checksum of previously accepted EULA text is placed at the following *global* location:
-
-```
-$ cat /tmp/shakti.eula.crc
-1226073694 11784
-```
+the checksum of previously accepted EULA text is stored in `@kparc/.shakti.eula.crc`.
 
 #### i'm having issues.
 
