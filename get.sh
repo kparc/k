@@ -36,7 +36,7 @@ crc=$(printf "$eula" | cksum)
 download() {
     #printf "downloading $(basename "$dist")..."
     #curl -Ls $dist | tar -jxf - "bin/k" && printf "done.\n\n"
-    mkdir -p bin && curl -Ls $dist > $k && chmod +x $k && echo .z.a|bin/k || exit 1
+    mkdir -p bin && curl -Ls $dist > $k && chmod +x $k && echo .z.a|bin/k && echo || exit 1
 }
 
 if [ "$crc" == "$saved_crc" ] || [ -n "$CI" ];
