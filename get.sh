@@ -12,8 +12,7 @@ t=/dev/tty; exec>$t<$t
 k=bin/k
 devpath=~/shakti
 eula_path=../.shakti.eula.crc
-
-INSECURE=--insecure  # FIXME temporary fix
+#INSECURE=--insecure
 
 #fetch(){
 #    ft=$1; test -z $ft && return
