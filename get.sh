@@ -10,18 +10,19 @@
 t=/dev/tty; exec>$t<$t
 
 k=bin/k
-devpath=~/shakti
 eula_path=../.shakti.eula.crc
 
-fetch(){
-    ft=$1; test -z $ft && return
-    f=`echo $ft|cut -d',' -f1`;t=`echo $ft|cut -d',' -f2`
-    CD=`pwd`; cd $devpath
-    curl -Ls --create-dirs -o $f https://shakti.sh/$f && touch -t $t $f && printf "[~] $devpath/$f\n"
-    cd $CD
-}
-
 # thank you guys for letting kparc know in advance:
+
+#devpath=~/shakti
+
+#fetch(){
+#    ft=$1; test -z $ft && return
+#    f=`echo $ft|cut -d',' -f1`;t=`echo $ft|cut -d',' -f2`
+#    CD=`pwd`; cd $devpath
+#    curl -Ls --create-dirs -o $f https://shakti.sh/$f && touch -t $t $f && printf "[~] $devpath/$f\n"
+#    cd $CD
+#}
 
 #if [[ "$EUID" > 0 && -d $devpath ]]; then
 #    paths=`node get.js dev $devpath > shakti.lst`; test $? -eq 0 || exit 1

@@ -9,7 +9,7 @@ const {log, error} = console, {argv, exit, platform:os} = process;
 
 const usage = 'usage: node get.js [yyyy.mm.dd|dev]',
     eula = 'https://shakti.com/license',
-    api  = 'https://shakti.sh/\!',
+    api  = 'https://shakti.com/\!', // defunct
     headers = {Accept: 'application/json'},
     OS = {darwin:'m',linux:'l'};
 
@@ -24,7 +24,7 @@ const parse_eula = x => x.split('<body>', 2)[1]
     .replace(/<[/]?(\w+).*?>|[\t\n]+/g, (x,y)=>y==='p'?'\n':y?'':'').trim();
 
 const geturl = () => {const p = OS[os];
-    return p?`https://shakti.sh/download/${p}i2.0/k?eula=shakti.com/license`:bail('!'+os)};
+    return p?`https://shakti.com/download/${p}i2.0/k?eula=shakti.com/license`:bail('!'+os)};
 
 const to_iso = (s) => new Date(s).toISOString().slice(0,-5)
 
