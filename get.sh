@@ -37,7 +37,7 @@ saved_crc=$(test -f $eula_path && cat $eula_path)
 crc=$(printf "$eula" | cksum)
 
 download() {
-    #printf "downloading $(basename "$dist")..."
+    printf "downloading $(basename "$dist")..."
     #curl -Ls $dist | tar -jxf - "bin/k" && printf "done.\n\n"
     mkdir -p bin && curl -Ls $dist > $k && chmod +x $k && echo .z.a|bin/k && echo || exit 1
 }
