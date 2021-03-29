@@ -21,10 +21,12 @@ fetch(){
     cd $CD
 }
 
-if [[ "$EUID" > 0 && -d $devpath ]]; then
-    paths=`node get.js dev $devpath > shakti.lst`; test $? -eq 0 || exit 1
-    cat shakti.lst | xargs -L1 | while read p ; do fetch $p ; done
-fi
+# thank you guys for letting kparc know in advance:
+
+#if [[ "$EUID" > 0 && -d $devpath ]]; then
+#    paths=`node get.js dev $devpath > shakti.lst`; test $? -eq 0 || exit 1
+#    cat shakti.lst | xargs -L1 | while read p ; do fetch $p ; done
+#fi
 
 IFS=$'\n'
 read -d '' -ra x <<< "$(node get.js $1)"
