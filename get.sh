@@ -10,11 +10,10 @@
 t=/dev/tty; exec>$t<$t
 
 k=bin/k
+devpath=~/shakti
 eula_path=../.shakti.eula.crc
 
-# thank you guys for letting kparc know in advance:
-
-#devpath=~/shakti
+INSECURE=--insecure  # FIXME temporary fix
 
 #fetch(){
 #    ft=$1; test -z $ft && return
@@ -39,7 +38,7 @@ crc=$(printf "$eula" | cksum)
 download() {
     printf "downloading $(basename "$dist")..."
     #curl -Ls $dist | tar -jxf - "bin/k" && printf "done.\n\n"
-    mkdir -p bin && curl -Ls $dist > $k && chmod +x $k && echo .z.a|bin/k && echo || exit 1
+    mkdir -p bin && curl $INSECURE -Ls $dist > $k && chmod +x $k && echo .z.a|bin/k && echo || exit 1
 }
 
 if [ "$crc" == "$saved_crc" ] || [ -n "$CI" ];
