@@ -1,7 +1,6 @@
 "use strict"
 
 // INSECURE temp fix, shakti tls chain is broken
-process.env["NODE_NO_WARNINGS"] = 1;
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 
 let SHAKTI_DIR = null;
@@ -28,7 +27,7 @@ const parse_eula = x => x.split('<body>', 2)[1]
     .replace(/<[/]?(\w+).*?>|[\t\n]+/g, (x,y)=>y==='p'?'\n':y?'':'').trim();
 
 const geturl = () => {const p = OS[os];
-    return p?`https://shakti.com/download/${p}i2.0/k?eula=shakti.com/license`:bail('!'+os)};
+    return p?`https://shakti.com/download/${p}i2.0?eula=shakti.com/license`:bail('!'+os)};
 
 const to_iso = (s) => new Date(s).toISOString().slice(0,-5)
 

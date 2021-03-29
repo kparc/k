@@ -29,8 +29,9 @@ INSECURE=--insecure  # FIXME temporary fix
 #fi
 
 IFS=$'\n'
-read -d '' -ra x <<< "$(node get.js $1)"
+read -d '' -ra x <<< "$(node --no-warnings get.js $1)"
 dist=${x[0]}; eula=${x[1]}
+
 test -z $dist || test -z $eula && exit 1
 saved_crc=$(test -f $eula_path && cat $eula_path)
 crc=$(printf "$eula" | cksum)
