@@ -24,7 +24,7 @@ $ npm i @kparc/k -g
 $ echo 2+2|k
 ```
 
-### devmode `(temporarily disabled)`
+### devmode
 
 in case the installer runs as non-root and finds a directory named `shakti` in your `$HOME`, it will check out latest documentation and examples from `shakti.sh` into that directory.
 
