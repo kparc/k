@@ -14,18 +14,19 @@ devpath=~/shakti
 eula_path=../.shakti.eula.crc
 #INSECURE=--insecure
 
-#fetch(){
-#    ft=$1; test -z $ft && return
-#    f=`echo $ft|cut -d',' -f1`;t=`echo $ft|cut -d',' -f2`
-#    CD=`pwd`; cd $devpath
-#    curl -Ls --create-dirs -o $f https://shakti.sh/$f && touch -t $t $f && printf "[~] $devpath/$f\n"
-#    cd $CD
-#}
+fetch(){
+    ft=$1; test -z $ft && return
+    CD=`pwd`; cd $devpath
+    curl -f -z $ft -Ls --create-dirs -o $ft http://shakti.com/$ft && printf "[~] $devpath/$ft\n"
+    cd $CD
+}
 
-#if [[ "$EUID" > 0 && -d $devpath ]]; then
-#    paths=`node get.js dev $devpath > shakti.lst`; test $? -eq 0 || exit 1
-#    cat shakti.lst | xargs -L1 | while read p ; do fetch $p ; done
-#fi
+if [[ "$EUID" > 0 && -d $devpath ]]; then
+    paths=`node --no-warnings get.js dev > shakti.lst`; test $? -eq 0 || exit 1
+    cat shakti.lst | xargs -L1 | while read p ; do fetch $p ; done
+fi
+
+exit 0
 
 IFS=$'\n'
 read -d '' -ra x <<< "$(node --no-warnings get.js $1)"
@@ -50,7 +51,7 @@ else
     printf "\n\n$eula\n" | fold -s -w $(($cols - 10))
     while true
     do
-	printf "\nDo you agree with the terms of the Evaluation Agreement? [y/n] " && read -rn1
+	printf "\nDo you agree with the terms of the Shakti Software Evaluation Agreement? [y/n] " && read -rn1
 
         case $REPLY in
         [yY][eE][sS]|[yY])
