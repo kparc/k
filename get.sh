@@ -17,7 +17,11 @@ eula_path=../.shakti.eula.crc
 fetch(){
     ft=$1; test -z $ft && return
     CD=`pwd`; cd $devpath
-    curl -f -z $ft -Ls --create-dirs -o $ft http://shakti.com/$ft && printf "[~] $devpath/$ft\n"
+    ts=$ft
+    if [[ ! -f $ft || -d $devpath ]]; then
+	ts=19700101
+    fi
+    curl -f -z $ts -Ls --create-dirs -o $ft http://shakti.com/$ft && printf "[~] $devpath/$ft\n"
     cd $CD
 }
 
